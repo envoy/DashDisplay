@@ -88,16 +88,16 @@ typedef struct _Input
         //[self requestURLorSearchInput];
         [self loadHomePage];
     }
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"DontShowHintsOnLaunch"] && !_displayedHintsOnLaunch) {
-        [self showHintsAlert];
-    }
+//    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"DontShowHintsOnLaunch"] && !_displayedHintsOnLaunch) {
+//        [self showHintsAlert];
+//    }
 }
 -(void)loadHomePage {
     if ([[NSUserDefaults standardUserDefaults] stringForKey:@"homepage"] != nil) {
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[NSUserDefaults standardUserDefaults] stringForKey:@"homepage"]]]];
     }
     else {
-        [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: @"http://www.google.com"]]];
+        [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: @"https://dashcontrol.envoy.com/display/show"]]];
     }
 }
 -(void)initWebView {
@@ -189,9 +189,9 @@ typedef struct _Input
     //[loadingSpinner startAnimating];
     [self.view addSubview:loadingSpinner];
     [self.view bringSubviewToFront:loadingSpinner];
-    //ENABLE CURSOR MODE INITIALLY
-    self.cursorMode = YES;
-    cursorView.hidden = NO;
+    //DISABLE CURSOR MODE INITIALLY
+    self.cursorMode = NO;
+    cursorView.hidden = YES;
     self.textFontSize = 100;
 }
 -(void)handleDoubleTapMenuOrPlayPause:(UITapGestureRecognizer *)sender {
